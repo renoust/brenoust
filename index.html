@@ -1,0 +1,482 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <title>Benjamin Renoust</title>
+    <META NAME="robots" CONTENT="index,follow">
+    <META NAME="Keywords" CONTENT="benjamin renoust, benjamin, renoust, benjamin renoust, benjaminrenoust, Home page, Home, page, graph drawing, graph, drawing, information visualization, information, visualization, clustering, network analysis, network, analysis, graph visualization, network visualization, graph analysis, multiplex network, entanglement, multiplex">
+    <META NAME="copyright" content="2013 by Benjamin Renoust">
+    <META NAME="subject" content="benjamin renoust, graph, graph drawing, information visualization, clustering, network analysis">
+    <META NAME="author" content="Benjamin Renoust">
+
+    <!--
+    <link rel="stylesheet" type="text/css" href="brenoust/ext-all.css" />
+    <script type="text/javascript" src="brenoust/ext-base.js"></script>
+    <script type="text/javascript" src="brenoust/ext-all.js"></script>
+    <link rel="stylesheet" type="text/css" href="brenoust/onglets.css" />
+    <script type="text/javascript" src="brenoust/onglets.js"></script>   -->
+
+    <script src="http://code.jquery.com/jquery-latest.min.js"
+            type="text/javascript"></script>
+    <script type="text/javascript" src="highslide/highslide-full.js"></script>
+    <!--script type="text/javascript" src="http://bibtex-js.googlecode.com/svn/trunk/src/bibtex_js.js"></script-->
+    <link rel="stylesheet" type="text/css" href="highslide/highslide.css" />
+
+
+    <SCRIPT language="Javascript">
+
+        function loadHighSlide()
+        {
+            hs.graphicsDir = 'highslide/graphics/';
+            hs.align = 'center';
+            hs.transitions = ['expand', 'crossfade'];
+            hs.outlineType = 'rounded-white';
+            hs.fadeInOut = true;
+            hs.dimmingOpacity = 0.75;
+            hs.numberPosition = 'caption';
+
+            //hs.wrapperClassName = 'dark';
+            hs.captionEval = 'Gallery';
+            hs.numberPosition = "heading";
+            hs.captionOverlay.position = "rightpanel";
+            hs.useBox = true;
+            hs.width = 600;
+            hs.height = 400;
+            hs.outlineWhileAnimating = true;
+
+            //hs.dimmingOpacity = 0.8;
+
+
+            // Add the slideshow providing the controlbar and the thumbstrip
+            hs.addSlideshow({
+                //slideshowGroup: 'group1',
+                interval: 5000,
+                repeat: false,
+                useControls: true,
+                fixedControls: 'fit',
+                overlayOptions: {
+                    position: 'bottom center',
+                    opacity: 0.75,
+                    hideOnMouseOut: true
+                },
+                thumbstrip: {
+                    position: 'below',
+                    mode: 'horizontal',
+                    relativeTo: 'expander'
+                }
+            });
+        }
+
+        function Chargement() {
+
+            var images = new Array();
+            var nbPhotos = 1;
+            images[0] = "<img src=\"img/avatar256.png\" width=256 height=256>";
+            //images[1] = "<img src=\"img/avatar256.png\" width=256 height=256>";
+            //images[2] = "<img src=\"img/avatar256.png\" width=256 height=256>";
+
+            var image = document.getElementById('image');
+            var id = Math.floor(Math.random()*nbPhotos);
+            if(id == nbPhotos) id = nbPhotos-1;
+            image.innerHTML = images[id];
+        }
+
+
+        var leftsideWidth = 235;
+        var topLeftHeight = 430;
+        var navHeight = 145;
+        var totalWidth = function(){return $("div.background").width()};
+        var defaultContent = "home";
+        var currentContent = "home.html";
+        var backgroundOpacity = 0.8;
+        var winW = 630, winH = 460;
+        setHW();
+
+        function setBackground()
+        {
+            var backgroundDiv = $("div.background");
+            backgroundDiv.css({'position': 'absolute',
+                'top': '0px',
+                'width': $("body").width(),
+                'height': 'auto',
+                'transform':'rotate(180deg)',
+                'overflow':'hidden',
+                'z-index':-1});
+
+            backgroundDiv.append('<img src="img/complexity.png" width=100% height=100%>')
+            //mainDiv.add("img").attribute("src","img/complexity.png").css({"width":"20%", "height":"20%", "transparency":"50%"})
+        }
+
+        function setHW()
+        {
+            if (document.body && document.body.offsetWidth) {
+                winW = document.body.offsetWidth;
+                winH = document.body.offsetHeight;
+            }
+            if (document.compatMode=='CSS1Compat' &&
+                    document.documentElement &&
+                    document.documentElement.offsetWidth ) {
+                winW = document.documentElement.offsetWidth;
+                winH = document.documentElement.offsetHeight;
+            }
+            if (window.innerWidth && window.innerHeight) {
+                winW = window.innerWidth;
+                winH = window.innerHeight;
+            }
+        }
+
+        function setMain()
+        {
+            var mainDiv = $("div.main");
+            mainDiv.css({'position': 'relative',
+                'top': '5px',
+                'width': winW,
+                'height': winH,
+                'overflow':'hidden',
+                'background-color': 'white',
+                'z-index':5});
+            //'margin-left': 0,
+            //    'margin-right': 15,
+        }
+
+        function setTopLeft()
+        {
+            var mainDiv = $("div.topLeftContainer");
+            mainDiv.css({'position': 'absolute',
+                'top': '0px',
+                'width': 'auto',
+                'height': 'auto',
+                'background-color': 'red',
+                'z-index':5});
+
+            var topLeftBcg = $("div.topLeftBackground");
+            topLeftBcg.css({'position': 'absolute',
+                'top': '5px',
+                'left': '5px',
+                'width': leftsideWidth,
+                'height': topLeftHeight,
+                'margin-top': '5px',
+                'margin-left': '5px',
+                'margin-right': '5px',
+                'background-color': 'white',
+                'border':"1px solid black",
+                'opacity': backgroundOpacity,
+                'z-index':2});
+            var topLeft = $("div.topLeft");
+            topLeft.css({'position': 'absolute',
+                'top': '10px',
+                'left': '5px',
+                'width': leftsideWidth,
+                'height': 'auto',
+                'margin-top': '15px',
+                'margin-left': '15px',
+                'margin-right': '5px',
+                'z-index':3});
+            topLeft.append('<img src="img/avatar256.png" width=90%>');
+            topLeft.append("<p>"+
+        "<font><b>Benjamin Renoust</b></font> <br>"+
+                "Ph.D. candidate<br><br><br>"                +
+                "<a href='http://www.labri.fr' target='_blank'>LaBRI</a>, University of Bordeaux, "  +
+                "Bordeaux, France<br>"               +
+                "<a href='http://www.inria.fr' target='_blank'>INRIA</a> Bordeaux Sud-Ouest, "       +
+                "Bordeaux, France<br>"               +
+                "(<a href='http://www.ina.fr' target='_blank'>INA</a>) Institut National de l'Audiovisuel, "+
+            "Paris, France<br>"                               +
+                    "<a href='mailto:benjamin.renoust@gmail.com'>benjamin.renoust@gmail.com</a>"+
+                "<br></p>");
+        }
+
+
+        function setNav()
+        {
+            var mainDiv = $("div.navContainer");
+            mainDiv.css({'position': 'relative',
+                'top': topLeftHeight+15,
+                'width': 'auto',
+                'height': 'auto',
+                'z-index':1});
+
+            var navBackground = $("div.navBackground");
+            navBackground.css({'position': 'absolute',
+                'top': '0px',
+                'left': '5px',
+                'width': leftsideWidth,
+                'height': navHeight,
+                'margin-top': '5px',
+                'margin-left': '5px',
+                'margin-right': '5px',
+                'background-color': 'white',
+                'opacity': backgroundOpacity,
+                'border':"1px solid black",
+                'z-index':2});
+            var nav = $("div.nav");
+            nav.css({'position': 'absolute',
+                'top': '0px',
+                'left': '5px',
+                'width': leftsideWidth,
+                'height': 'auto',
+                'margin-top': '15px',
+                'margin-left': '15px',
+                'margin-right': '5px',
+                'z-index':3});
+
+            var pageList = {
+                "Home":"home.html",
+                "Publications":"publications.html",
+                "Projects":"projects.html",
+                "Teaching":"teaching.html",
+                "Vitae":"vitae.html",
+                "Contact":"contact.html",
+                "Gallery":"gallery.html",
+                "Readings":"readings.html"
+            };
+
+            //nav.append("<p>")
+            for (var key in pageList)
+            {
+                aLink = ("<a href class='"+key+"'>"+key+"</a><br/>");
+                aTag = nav.append(aLink);
+                (function(callPage)
+                {
+                    $("."+key).on("click", function(event){
+                        event.preventDefault();
+                        //alert(callPage);
+                        addContent(callPage);
+                    })
+                })(pageList[key])
+
+            }
+            //nav.append("</p>")
+
+        }
+
+        function setContent()
+        {
+            var mainDiv = $("div.contentContainer");
+            mainDiv.css({'position': 'absolute',
+                'top': '5px',
+                'left': leftsideWidth+10,
+                'width': totalWidth()-leftsideWidth,
+                'height': winH-30,
+                'overflow':'scroll',
+                'z-index':5});
+
+            var contentBackground = $("div.contentBackground");
+            contentBackground.css({'position': 'absolute',
+                'top': '0px',
+                'left': 5,
+                'width': totalWidth()-leftsideWidth-30,
+                'height': '400',
+                'margin-top': '5px',
+                'margin-left': '5px',
+                'margin-right': '5px',
+                'background-color': 'white',
+                'border':"1px solid black",
+                'opacity': backgroundOpacity,
+                'border-width':'thin',
+                'z-index':2});
+            var content = $("div.content");
+            content.css({'position': 'absolute',
+                'top': '0px',
+                'left': '5px',
+                'width': totalWidth()-leftsideWidth-45,
+                'height': 'auto',
+
+                'margin-top': '5px',
+                'margin-left': '15px',
+                'margin-right': '15px',
+                'z-index':2});
+
+        }
+
+        function addContent(target)
+        {
+            currentContent = target
+            var content = $("div.content");
+            content.css({"overflow": "scroll", "height":'auto'});
+
+            $('div.content').load(target, function()
+            {
+               var contentBackground = $("div.contentBackground");
+               contentBackground.css('height', $("div.content").height());
+               if (target=="readings.html")
+                loadBibtex();
+            });
+        }
+
+        function loadBibtex()
+        {
+            function bibtex_js_draw(data) {
+                var contentBackground = $("div.contentBackground");
+                contentBackground.css('height', winH);
+                $("div.content").css({"overflow": "scroll", "height":winH});
+            }
+            $(".bibtex_template").hide();
+            $("#bibtex_input").load( "pub/mybib.bib", bibtex_js_draw );
+
+        }
+
+
+        function loadPage()
+        {
+           loadHighSlide();
+           setHW();
+           setMain();
+           setBackground();
+           setTopLeft();
+           setNav();
+           setContent();
+           addContent('home.html');
+        }
+
+        function resizePage()
+        {
+            setMain();
+            setHW();
+            var backgroundDiv = $("div.background");
+            var bgTransform = 'rotate(180deg)';
+            if (winW<winH) bgTransform = 'rotate(90deg) scaleX(-1)';
+            backgroundDiv.css({'position': 'absolute',
+                'top': '0px',
+                'width': winW-15,
+                'height': 'auto',
+                'transform': bgTransform,
+                'z-index':-1});
+
+            if (winW<winH) $('div.background img').css({'height' : winW});
+            else $('div.background img').css({'height' : '100%'});
+
+            //backgroundDiv.append('<img src="img/complexity.png" width=100% height=100%>')
+            //setBackground();
+            //setTopLeft();
+            //setNav();
+            setContent();
+            addContent(currentContent);
+        }
+
+        /*function updatePage()
+        {
+            var bgSize =  $("div.background").width();
+
+            var mainDiv = $("div.contentContainer");
+            mainDiv.css({'position': 'absolute',
+                'top': '5px',
+                'left': leftsideWidth+10,
+                'width': totalWidth()-leftsideWidth,
+                'height': '400',
+                'z-index':5});
+
+            var contentBackground = $("div.contentBackground");
+            contentBackground.css({'position': 'absolute',
+                'top': '0px',
+                'left': 5,
+                'width': totalWidth()-leftsideWidth-30,
+                'height': '400',
+                'margin-top': '5px',
+                'margin-left': '5px',
+                'margin-right': '5px',
+                'background-color': 'white',
+                'border':"1px solid black",
+                'opacity': 0.5,
+                'border-width':'thin',
+                'z-index':2});
+
+            var content = $("div.content");
+            content.css({'position': 'absolute',
+                'top': '0px',
+                'left': '5px',
+                'width': bgSize-leftsideWidth-45,
+                'height': 'auto',
+                'margin-top': '5px',
+                'margin-left': '15px',
+                'margin-right': '15px',
+                'z-index':2});
+            //addContent();
+        }*/
+        window.onresize = resizePage;
+
+        //window.onload(
+        //        loadPage();
+        //);
+
+    </SCRIPT>
+
+    <style>
+        body {
+            font-family: verdana, arial, sans-serif;
+            margin-top: 5px;
+            font-size: 0.8em;
+            height:100%;
+            overflow:auto;
+        }
+    </style>
+
+    <script>
+        /*
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'XXUA-41905782-1', 'XXlirmm.fr');
+        ga('send', 'pageview');
+        */
+    </script>
+
+</head>
+<body onLoad="loadPage();">
+<div class="main">
+    <div class="background"></div>
+    <div class="navContainer">
+        <div class="navBackground"></div>
+        <div class="nav"></div>
+    </div>
+    <div class="contentContainer">
+        <div class="contentBackground"></div>
+        <div class="content"></div>
+    </div>
+    <div class="topLeftContainer">
+        <div class="topLeftBackground"></div>
+        <div class="topLeft"></div>
+    </div>
+</div>
+
+<!--
+<div style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;">
+    <img src="img/complexity.png" width=100% height=100% transparency=50%>
+    <div style="position: absolute; width: 100%; top: 5px; left: 0px">
+        <center>
+            <table width=750px style="">
+                <tr>
+                    <td rowspan=2 align=left width=225 height=300><div id="image"></div></br></td>
+
+                    <td align=center>
+
+                        <img src="img/avatar256.png" height=75>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <img src="img/avatar256.png" height=75><br>
+                        <img src="img/avatar256.png" width=520 height=4>
+
+                        <br><br><br><br>
+                        <font size=5><b>Benjamin Renoust</b></font> <br><br><br>
+                        Ph.D. candidate<br>
+                        LaBRI, University of Bordeaux<br>
+                        Bordeaux, France<br>
+                        INRIA Bordeaux Sud-Ouest<br>
+                        Bordeaux, France<br>
+                        Institut National de l'Audiovisuel (INA)<br>
+                        Paris, France<br>
+                        <a href="mailto:benjamin.renoust@gmail.com">benjamin.renoust@gmail.com</a>
+                        <br><br><br><br>
+
+                    </td>
+                </tr>
+            </table>
+            <div style="width: 750px; height: 500px; margin-top: 5px"><div id="tab" align="left"></div></div>
+        </center>
+    </div>
+</div> -->
+</body>
+</html>
