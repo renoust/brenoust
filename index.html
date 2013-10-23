@@ -354,7 +354,7 @@
 
             currentContent = target;
             var content = $("div.content");
-            content.css({"overflow": "auto", "height":'auto'});
+            content.css({"overflow": "auto", "height":'auto', 'width': '97%-10px'});
 
             $('div.content').load(target, function()
             {
@@ -362,16 +362,26 @@
                contentBackground.css('height', $("div.content").height());
                if (target=="readings.html")
                 loadBibtex();
-               $('img').load(function(){
-                    var contentBackground = $("div.contentBackground");
-                    contentBackground.css('height', $("div.content").height());
-               });
+               if (target=="contact.html")
+                   $("div.content").css("width", "95%");
+
                 if($("div.content").height() >= winH-80)
                 {
                     var contentBackground = $("div.contentBackground");
                     contentBackground.css('height', winH-80);
                     $("div.content").css({"overflow": "auto", "height":contentBackground.height()-20, "width":$("div.content")});
                 }
+
+                $('img').load(function(){
+                    var contentBackground = $("div.contentBackground");
+                    contentBackground.css('height', $("div.content").height());
+                    if($("div.content").height() >= winH-80)
+                    {
+                        var contentBackground = $("div.contentBackground");
+                        contentBackground.css('height', winH-80);
+                        $("div.content").css({"overflow": "auto", "height":contentBackground.height()-20, "width":$("div.content")});
+                    }
+                });
             });
 
 
