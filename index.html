@@ -27,11 +27,16 @@
     <link rel="stylesheet" type="text/css" href="brenoust/onglets.css" />
     <script type="text/javascript" src="brenoust/onglets.js"></script>   -->
     <style>
-    body { font: 12px/18px "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif; background-color: transparent; color: #333; -webkit-font-smoothing: antialiased; overflow: hidden;}
+
+    body { font: 12px/18px "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif; background-color: transparent;color: #333; -webkit-font-smoothing: antialiased; overflow: hidden;}
+
     -webkit-scrollbar {
         height: 0px;
         width: 0px;
     }
+    div { font-size: 15px }
+
+
     </style>
 
     <script src="http://code.jquery.com/jquery-latest.min.js"
@@ -98,7 +103,7 @@
         }
 
 
-        var leftsideWidth = 200;
+        var leftsideWidth = 245;
         var topLeftHeight = 445;
         var navHeight = 160;
         var totalWidth = function(){return $("div.background").width()};
@@ -307,10 +312,10 @@
 
             var content = $("div.content");
             content.css({'position': 'absolute',
-                'margin-right':'100px',
+                'margin-right':'10px',
                 'padding':'10px',
-                'padding-right':'40px',
-                'width': '97%',
+                'padding-right':'10px',
+                'width': '97%-10px',
                 'height': 'auto',
                 'opacity':1.0,
                 'overflow':'auto',
@@ -359,13 +364,13 @@
                 loadBibtex();
                $('img').load(function(){
                     var contentBackground = $("div.contentBackground");
-                    contentBackground.css('height', $("div.content").height()+10);
+                    contentBackground.css('height', $("div.content").height());
                });
-                if($("div.content").height() >= winH-70)
+                if($("div.content").height() >= winH-80)
                 {
                     var contentBackground = $("div.contentBackground");
-                    contentBackground.css('height', winH-50);
-                    $("div.content").css({"overflow": "auto", "height":winH-70, "width":$("div.content")});
+                    contentBackground.css('height', winH-80);
+                    $("div.content").css({"overflow": "auto", "height":contentBackground.height()-20, "width":$("div.content")});
                 }
             });
 
@@ -374,14 +379,16 @@
 
         function loadBibtex()
         {
-            function bibtex_js_draw(data) {
+            function my_bibtex_js_draw(data) {
                 var contentBackground = $("div.contentBackground");
-                contentBackground.css('height', winH-50);
-                $("div.content").css({"overflow": "auto", "height":winH-70, "width":$("div.content")});
-                $("div.bibtex_loading").hide();
+                contentBackground.css('height', winH-80);
+                $("div.content").css({"overflow": "auto", "height":contentBackground.height()-20, "width":$("div.content")});
+                $("div.content").load(function(){$("div.bibtex_loading").hide();})
+
             }
             $(".bibtex_template").hide();
-            $("#bibtex_input").load( "pub/mybib.bib", bibtex_js_draw );
+            $("#bibtex_input").load( "pub/mybib.bib", my_bibtex_js_draw );
+
 
         }
 
